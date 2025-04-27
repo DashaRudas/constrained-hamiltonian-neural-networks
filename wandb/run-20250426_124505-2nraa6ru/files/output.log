@@ -1,0 +1,70 @@
+Traceback (most recent call last):
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/fabric/utilities/data.py", line 488, in __getattr__
+    return self[key]
+KeyError: 'no_lr_sched'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 607, in <module>
+    LightningCLI(DynamicsModel)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 988, in _run
+    self.strategy.setup(self)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 159, in setup
+    self.setup_optimizers(trainer)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 139, in setup_optimizers
+    self.optimizers, self.lr_scheduler_configs = _init_optimizers_and_lr_schedulers(self.lightning_module)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/core/optimizer.py", line 180, in _init_optimizers_and_lr_schedulers
+    optim_conf = call._call_lightning_module_hook(model.trainer, "configure_optimizers", pl_module=model)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 176, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 350, in configure_optimizers
+    if self.hparams.no_lr_sched:
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/fabric/utilities/data.py", line 490, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{key}'") from e
+AttributeError: 'AttributeDict' object has no attribute 'no_lr_sched'
+Traceback (most recent call last):
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/fabric/utilities/data.py", line 488, in __getattr__
+    return self[key]
+KeyError: 'no_lr_sched'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 607, in <module>
+    LightningCLI(DynamicsModel)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 988, in _run
+    self.strategy.setup(self)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 159, in setup
+    self.setup_optimizers(trainer)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 139, in setup_optimizers
+    self.optimizers, self.lr_scheduler_configs = _init_optimizers_and_lr_schedulers(self.lightning_module)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/core/optimizer.py", line 180, in _init_optimizers_and_lr_schedulers
+    optim_conf = call._call_lightning_module_hook(model.trainer, "configure_optimizers", pl_module=model)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 176, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 350, in configure_optimizers
+    if self.hparams.no_lr_sched:
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/fabric/utilities/data.py", line 490, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{key}'") from e
+AttributeError: 'AttributeDict' object has no attribute 'no_lr_sched'

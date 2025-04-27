@@ -1,0 +1,84 @@
+
+  | Name  | Type | Params | Mode
+---------------------------------------
+0 | model | CHNN | 135 K  | train
+---------------------------------------
+135 K     Trainable params
+0         Non-trainable params
+135 K     Total params
+0.541     Total estimated model params size (MB)
+15        Modules in train mode
+0         Modules in eval mode
+Sanity Checking: |                                                                                                                                              | 0/? [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/train.py", line 5, in <module>
+    LightningCLI(DynamicsModel, save_config_kwargs={"overwrite": True})
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 120, in run
+    self.setup_data()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 176, in setup_data
+    dataloaders = _request_dataloader(source)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py", line 326, in _request_dataloader
+    return data_source.dataloader()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py", line 290, in dataloader
+    return call._call_lightning_module_hook(self.instance.trainer, self.name, pl_module=self.instance)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 176, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 460, in val_dataloader
+    batch_size=self.batch_sizes["val"],
+  File "/home/rudasha/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1940, in __getattr__
+    raise AttributeError(
+AttributeError: 'DynamicsModel' object has no attribute 'batch_sizes'
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/train.py", line 5, in <module>
+    LightningCLI(DynamicsModel, save_config_kwargs={"overwrite": True})
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 120, in run
+    self.setup_data()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 176, in setup_data
+    dataloaders = _request_dataloader(source)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py", line 326, in _request_dataloader
+    return data_source.dataloader()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py", line 290, in dataloader
+    return call._call_lightning_module_hook(self.instance.trainer, self.name, pl_module=self.instance)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 176, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 460, in val_dataloader
+    batch_size=self.batch_sizes["val"],
+  File "/home/rudasha/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1940, in __getattr__
+    raise AttributeError(
+AttributeError: 'DynamicsModel' object has no attribute 'batch_sizes'

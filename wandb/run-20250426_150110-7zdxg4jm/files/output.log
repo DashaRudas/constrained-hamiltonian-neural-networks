@@ -1,0 +1,63 @@
+Restoring states from the checkpoint path at lightning_logs/version_0/checkpoints/epoch=49-step=350.ckpt
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/callbacks/model_checkpoint.py:362: The dirpath has changed from '/home/rudasha/constrained-hamiltonian-neural-networks/lightning_logs/version_0/checkpoints' to './gyro-demo/7zdxg4jm/checkpoints', therefore `best_model_score`, `kth_best_model_path`, `kth_value`, `last_model_path` and `best_k_models` won't be reloaded. Only `best_model_path` will be reloaded.
+Loaded model weights from the checkpoint at lightning_logs/version_0/checkpoints/epoch=49-step=350.ckpt
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:425: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+Testing DataLoader 0:   0%|                                                                                                                                     | 0/1 [00:00<?, ?it/s]Rolling out model
+Rolling out true system
+Testing DataLoader 0: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:50<00:00,  0.02it/s]
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/test.py", line 5, in <module>
+    LightningCLI(DynamicsModel, save_config_kwargs={"overwrite": True})
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 775, in test
+    return call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 817, in _test_impl
+    results = self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1049, in _run_stage
+    return self._evaluation_loop.run()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 152, in run
+    return self.on_run_end()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 295, in on_run_end
+    self._on_evaluation_epoch_end()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 375, in _on_evaluation_epoch_end
+    call._call_lightning_module_hook(trainer, hook_name)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 176, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+TypeError: DynamicsModel.on_test_epoch_end() missing 1 required positional argument: 'outputs'
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/test.py", line 5, in <module>
+    LightningCLI(DynamicsModel, save_config_kwargs={"overwrite": True})
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 775, in test
+    return call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 817, in _test_impl
+    results = self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1049, in _run_stage
+    return self._evaluation_loop.run()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 152, in run
+    return self.on_run_end()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 295, in on_run_end
+    self._on_evaluation_epoch_end()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 375, in _on_evaluation_epoch_end
+    call._call_lightning_module_hook(trainer, hook_name)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 176, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+TypeError: DynamicsModel.on_test_epoch_end() missing 1 required positional argument: 'outputs'

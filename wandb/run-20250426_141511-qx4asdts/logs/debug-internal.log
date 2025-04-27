@@ -1,0 +1,15 @@
+{"time":"2025-04-26T14:15:11.30813578+03:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"wandb/run-20250426_141511-qx4asdts/logs/debug-core.log"}
+{"time":"2025-04-26T14:15:12.21261033+03:00","level":"INFO","msg":"created new stream","id":"qx4asdts"}
+{"time":"2025-04-26T14:15:12.212669979+03:00","level":"INFO","msg":"stream: started","id":"qx4asdts"}
+{"time":"2025-04-26T14:15:12.212735499+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"qx4asdts"}
+{"time":"2025-04-26T14:15:12.212798945+03:00","level":"INFO","msg":"handler: started","stream_id":"qx4asdts"}
+{"time":"2025-04-26T14:15:12.212821356+03:00","level":"INFO","msg":"sender: started","stream_id":"qx4asdts"}
+{"time":"2025-04-26T14:15:12.826312493+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-26T14:15:13.438629597+03:00","level":"INFO","msg":"stream: closing","id":"qx4asdts"}
+{"time":"2025-04-26T14:15:13.438663239+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-26T14:15:13.438684768+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-26T14:15:14.768907702+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-26T14:15:15.110605247+03:00","level":"INFO","msg":"handler: closed","stream_id":"qx4asdts"}
+{"time":"2025-04-26T14:15:15.11069392+03:00","level":"INFO","msg":"sender: closed","stream_id":"qx4asdts"}
+{"time":"2025-04-26T14:15:15.110676057+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"qx4asdts"}
+{"time":"2025-04-26T14:15:15.110848774+03:00","level":"INFO","msg":"stream: closed","id":"qx4asdts"}

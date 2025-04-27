@@ -1,0 +1,42 @@
+{
+  "os": "Linux-6.8.0-57-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2025-04-26T11:51:07.167531Z",
+  "args": [
+    "test",
+    "--ckpt_path=lightning_logs/version_0/checkpoints/epoch=49-step=350.ckpt",
+    "--model.body_class=Gyroscope",
+    "--model.network_class=CHNN",
+    "--model.n_layers=8",
+    "--model.n_hidden=256",
+    "--trainer.logger.class_path=lightning.pytorch.loggers.WandbLogger",
+    "--trainer.logger.init_args.project=gyro-demo",
+    "--trainer.callbacks+=callbacks.SaveTestLogCallback"
+  ],
+  "program": "/home/rudasha/constrained-hamiltonian-neural-networks/test.py",
+  "codePath": "test.py",
+  "git": {
+    "remote": "https://github.com/mfinzi/constrained-hamiltonian-neural-networks.git",
+    "commit": "c624a63265240e7e544f0990cba71af1c305dbb8"
+  },
+  "email": "dashka.rudas@gmail.com",
+  "root": ".",
+  "host": "rudasha",
+  "executable": "/usr/bin/python3",
+  "codePathLocal": "test.py",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "250375106560",
+      "used": "228340092928"
+    }
+  },
+  "memory": {
+    "total": "7199064064"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 8
+  }
+}

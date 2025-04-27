@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 572, in <module>
+    trainer = Trainer(**trainer_kwargs, callbacks=callbacks, logger=logger)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/utilities/argparse.py", line 70, in insert_env_defaults
+    return fn(self, **kwargs)
+TypeError: Trainer.__init__() got an unexpected keyword argument 'n_epochs_per_val'
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 572, in <module>
+    trainer = Trainer(**trainer_kwargs, callbacks=callbacks, logger=logger)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/utilities/argparse.py", line 70, in insert_env_defaults
+    return fn(self, **kwargs)
+TypeError: Trainer.__init__() got an unexpected keyword argument 'n_epochs_per_val'

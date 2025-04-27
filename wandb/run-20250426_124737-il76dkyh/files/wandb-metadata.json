@@ -1,0 +1,46 @@
+{
+  "os": "Linux-6.8.0-57-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2025-04-26T09:47:37.876958Z",
+  "args": [
+    "fit",
+    "--model.network_class",
+    "CHNN",
+    "--model.body_class",
+    "Gyroscope",
+    "--model.batch_size",
+    "128",
+    "--trainer.max_epochs",
+    "1000",
+    "--trainer.logger",
+    "WandbLogger",
+    "--trainer.logger.init_args.project",
+    "YOUR WANDB PROJECT"
+  ],
+  "program": "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py",
+  "codePath": "pl_trainer.py",
+  "git": {
+    "remote": "https://github.com/mfinzi/constrained-hamiltonian-neural-networks.git",
+    "commit": "c624a63265240e7e544f0990cba71af1c305dbb8"
+  },
+  "email": "dashka.rudas@gmail.com",
+  "root": ".",
+  "host": "rudasha",
+  "executable": "/usr/bin/python3",
+  "codePathLocal": "pl_trainer.py",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "250375106560",
+      "used": "228182691840"
+    }
+  },
+  "memory": {
+    "total": "7199064064"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 8
+  }
+}

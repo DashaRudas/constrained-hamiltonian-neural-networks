@@ -1,0 +1,39 @@
+
+  | Name  | Type | Params | Mode
+---------------------------------------
+0 | model | CHNN | 135 K  | train
+---------------------------------------
+135 K     Trainable params
+0         Non-trainable params
+135 K     Total params
+0.541     Total estimated model params size (MB)
+15        Modules in train mode
+0         Modules in eval mode
+Sanity Checking DataLoader 0:   0%|                                                                                                                             | 0/1 [00:00<?, ?it/s]Rolling out model
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:425: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+Rolling out true system
+Epoch 0: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.05it/s, v_num=jevm]Rolling out model
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:425: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=50). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 1: 100%|████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.21it/s, v_num=jevm, validation/trajectory_mae=0.0634]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 2: 100%|█████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.09it/s, v_num=jevm, validation/trajectory_mae=0.062]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 3: 100%|█████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.11it/s, v_num=jevm, validation/trajectory_mae=0.059]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 4: 100%|████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.05it/s, v_num=jevm, validation/trajectory_mae=0.0567]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 5: 100%|█████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.05it/s, v_num=jevm, validation/trajectory_mae=0.054]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 6: 100%|████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.04it/s, v_num=jevm, validation/trajectory_mae=0.0518]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 7: 100%|████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.01it/s, v_num=jevm, validation/trajectory_mae=0.0496]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 8: 100%|████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.03it/s, v_num=jevm, validation/trajectory_mae=0.0471]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 9: 100%|█████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:02<00:00,  3.05it/s, v_num=jevm, validation/trajectory_mae=0.045]Rolling out model
+Rolling out true system:   0%|                                                                                                                                  | 0/1 [00:00<?, ?it/s]
+Epoch 9: 100%|████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:03<00:00,  2.21it/s, v_num=jevm, validation/trajectory_mae=0.0425]
+                                                                                                                                                                                      
+`Trainer.fit` stopped: `max_epochs=10` reached.

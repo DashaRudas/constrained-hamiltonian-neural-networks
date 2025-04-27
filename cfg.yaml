@@ -1,0 +1,9 @@
+model:
+  hparams:
+    network_class: CHNN
+    body_class: Gyroscope
+trainer:
+  logger:
+    class_path: WandbLogger
+    init_args:
+      project: YOUR WANDB PROJECT

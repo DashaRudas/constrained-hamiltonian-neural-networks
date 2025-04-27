@@ -1,0 +1,67 @@
+ckpt_path: null
+data: null
+lr_scheduler: null
+model:
+  # batch_size: 128
+  # body_args: null
+  body_class: Gyroscope
+  chunk_len: 5
+  dataset_class: RigidBodyDataset
+  lr: 0.003
+  n_epochs: 2000
+  n_hidden: 256
+  n_layers: 8
+  n_test: 100
+  n_train: 800
+  n_train_systems: 1000
+  n_val: 100
+  network_class: CHNN
+  no_lr_sched: false
+  optimizer_class: AdamW
+  regen: false
+  seed: 0
+  tol: 1.0e-07
+  weight_decay: 0.0001
+optimizer: null
+seed_everything: 0
+trainer:
+  accelerator: cpu
+  accumulate_grad_batches: 1
+  barebones: false
+  benchmark: null
+  callbacks: null
+  check_val_every_n_epoch: 1
+  default_root_dir: null
+  detect_anomaly: false
+  deterministic: null
+  devices: '1'
+  enable_checkpointing: null
+  enable_model_summary: null
+  enable_progress_bar: null
+  fast_dev_run: false
+  gradient_clip_algorithm: null
+  gradient_clip_val: null
+  inference_mode: true
+  limit_predict_batches: null
+  limit_test_batches: null
+  limit_train_batches: null
+  limit_val_batches: null
+  log_every_n_steps: null
+  logger: null
+  max_epochs: 50
+  max_steps: -1
+  max_time: null
+  min_epochs: null
+  min_steps: null
+  model_registry: null
+  num_nodes: 1
+  num_sanity_val_steps: null
+  overfit_batches: 0.0
+  plugins: null
+  precision: null
+  profiler: null
+  reload_dataloaders_every_n_epochs: 0
+  strategy: auto
+  sync_batchnorm: false
+  use_distributed_sampler: true
+  val_check_interval: null

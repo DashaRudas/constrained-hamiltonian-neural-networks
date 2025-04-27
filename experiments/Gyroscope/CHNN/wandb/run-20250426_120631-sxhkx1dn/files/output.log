@@ -1,0 +1,32 @@
+Using default `ModelCheckpoint`. Consider installing `litmodels` package to enable `LitModelCheckpoint` for automatic upload to the Lightning model registry.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 579, in <module>
+    trainer.fit(dynamics_model)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 954, in _run
+    parsing.clean_namespace(model.hparams)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/utilities/parsing.py", line 42, in clean_namespace
+    del_attrs = [k for k, v in hparams.items() if not is_picklable(v)]
+AttributeError: 'Namespace' object has no attribute 'items'
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 579, in <module>
+    trainer.fit(dynamics_model)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 954, in _run
+    parsing.clean_namespace(model.hparams)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/pytorch_lightning/utilities/parsing.py", line 42, in clean_namespace
+    del_attrs = [k for k, v in hparams.items() if not is_picklable(v)]
+AttributeError: 'Namespace' object has no attribute 'items'

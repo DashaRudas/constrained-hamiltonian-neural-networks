@@ -1,0 +1,19 @@
+Restoring states from the checkpoint path at lightning_logs/version_0/checkpoints/epoch=49-step=350.ckpt
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/callbacks/model_checkpoint.py:362: The dirpath has changed from '/home/rudasha/constrained-hamiltonian-neural-networks/lightning_logs/version_0/checkpoints' to './gyro-demo/tjzs9qsu/checkpoints', therefore `best_model_score`, `kth_best_model_path`, `kth_value`, `last_model_path` and `best_k_models` won't be reloaded. Only `best_model_path` will be reloaded.
+Loaded model weights from the checkpoint at lightning_logs/version_0/checkpoints/epoch=49-step=350.ckpt
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:425: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+Testing DataLoader 0:   0%|                                                                                                                                     | 0/1 [00:00<?, ?it/s]Rolling out model
+Rolling out true system
+Testing DataLoader 0: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:33<00:00,  0.03it/s]
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃[1m [0m[1m       Test metric        [0m[1m [0m┃[1m [0m[1m       DataLoader 0       [0m[1m [0m┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│[36m [0m[36mtest/int_abs_err_pert_true[0m[36m [0m│[35m [0m[35m    -14.45454216003418    [0m[35m [0m│
+│[36m [0m[36mtest/int_abs_err_pred_true[0m[36m [0m│[35m [0m[35m   -0.47205787897109985   [0m[35m [0m│
+│[36m [0m[36mtest/int_pert_true_energy [0m[36m [0m│[35m [0m[35m    5.5547614097595215    [0m[35m [0m│
+│[36m [0m[36mtest/int_pred_true_energy [0m[36m [0m│[35m [0m[35m    5.552358627319336     [0m[35m [0m│
+│[36m [0m[36mtest/int_rel_err_pert_true[0m[36m [0m│[35m [0m[35m   -21.107685089111328    [0m[35m [0m│
+│[36m [0m[36mtest/int_rel_err_pred_true[0m[36m [0m│[35m [0m[35m    -7.122286319732666    [0m[35m [0m│
+│[36m [0m[36mtest/int_true_true_energy [0m[36m [0m│[35m [0m[35m    5.5547637939453125    [0m[35m [0m│
+│[36m [0m[36m   test/trajectory_mae    [0m[36m [0m│[35m [0m[35m   0.12935520708560944    [0m[35m [0m│
+└────────────────────────────┴────────────────────────────┘

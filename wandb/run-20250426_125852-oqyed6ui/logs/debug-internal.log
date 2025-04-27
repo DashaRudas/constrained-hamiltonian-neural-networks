@@ -1,0 +1,15 @@
+{"time":"2025-04-26T12:58:52.896815918+03:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"wandb/run-20250426_125852-oqyed6ui/logs/debug-core.log"}
+{"time":"2025-04-26T12:58:53.589756962+03:00","level":"INFO","msg":"created new stream","id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:53.589822659+03:00","level":"INFO","msg":"stream: started","id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:53.589906942+03:00","level":"INFO","msg":"sender: started","stream_id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:53.589913485+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:53.590092771+03:00","level":"INFO","msg":"handler: started","stream_id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:53.907999404+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-26T12:58:54.141272952+03:00","level":"INFO","msg":"stream: closing","id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:54.141315233+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-26T12:58:54.141373596+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-26T12:58:55.384200685+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-26T12:58:55.684054485+03:00","level":"INFO","msg":"handler: closed","stream_id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:55.684140521+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:55.684159838+03:00","level":"INFO","msg":"sender: closed","stream_id":"oqyed6ui"}
+{"time":"2025-04-26T12:58:55.684278988+03:00","level":"INFO","msg":"stream: closed","id":"oqyed6ui"}

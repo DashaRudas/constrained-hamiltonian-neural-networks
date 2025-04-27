@@ -1,0 +1,51 @@
+{
+  "os": "Linux-6.8.0-57-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2025-04-26T11:47:48.232283Z",
+  "args": [
+    "fit",
+    "--model.body_class=Gyroscope",
+    "--model.network_class=CHNN",
+    "--model.n_train_systems=1000",
+    "--model.n_train=800",
+    "--model.n_val=100",
+    "--model.n_test=100",
+    "--model.chunk_len=5",
+    "--model.batch_size=128",
+    "--trainer.accelerator=cpu",
+    "--trainer.devices=1",
+    "--trainer.max_epochs=50",
+    "--trainer.check_val_every_n_epoch=5",
+    "--trainer.logger.class_path=lightning.pytorch.loggers.WandbLogger",
+    "--trainer.logger.init_args.project=gyro-demo",
+    "--trainer.logger.init_args.tags=[\\\"train\\\",\\\"viz\\\"]",
+    "--trainer.callbacks+=callbacks.SaveTestLogCallback",
+    "--trainer.callbacks+=callbacks.VisualizeTrajectoriesCallback"
+  ],
+  "program": "/home/rudasha/constrained-hamiltonian-neural-networks/train.py",
+  "codePath": "train.py",
+  "git": {
+    "remote": "https://github.com/mfinzi/constrained-hamiltonian-neural-networks.git",
+    "commit": "c624a63265240e7e544f0990cba71af1c305dbb8"
+  },
+  "email": "dashka.rudas@gmail.com",
+  "root": ".",
+  "host": "rudasha",
+  "executable": "/usr/bin/python3",
+  "codePathLocal": "train.py",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "250375106560",
+      "used": "228337942528"
+    }
+  },
+  "memory": {
+    "total": "7199064064"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 8
+  }
+}

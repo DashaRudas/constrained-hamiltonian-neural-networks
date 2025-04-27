@@ -1,0 +1,76 @@
+_instantiator:
+    value: lightning.pytorch.cli.instantiate_module
+_wandb:
+    value:
+        cli_version: 0.19.10
+        m:
+            - "1": trainer/global_step
+              "6":
+                - 3
+              "7": []
+        python_version: 3.10.12
+        t:
+            "1":
+                - 1
+                - 5
+                - 41
+                - 53
+                - 55
+                - 106
+            "2":
+                - 1
+                - 5
+                - 41
+                - 53
+                - 55
+                - 106
+            "3":
+                - 7
+                - 15
+                - 23
+                - 55
+                - 66
+            "4": 3.10.12
+            "5": 0.19.10
+            "8":
+                - 5
+            "12": 0.19.10
+            "13": linux-x86_64
+batch_size:
+    value: 128
+body_args:
+    value: null
+body_class:
+    value: Gyroscope
+chunk_len:
+    value: 5
+dataset_class:
+    value: RigidBodyDataset
+lr:
+    value: 0.003
+n_hidden:
+    value: 256
+n_layers:
+    value: 3
+n_test:
+    value: 100
+n_train:
+    value: 800
+n_train_systems:
+    value: 1000
+n_val:
+    value: 100
+network_class:
+    value: CHNN
+no_lr_sched:
+    value: false
+optimizer_class:
+    value: AdamW
+regen:
+    value: false
+seed:
+    value: 0
+tol:
+    value: 1e-07
+weight_decay:
+    value: 0.0001

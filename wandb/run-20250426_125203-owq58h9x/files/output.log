@@ -1,0 +1,44 @@
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 615, in <module>
+    LightningCLI(DynamicsModel)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 974, in _run
+    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 108, in _call_setup_hook
+    _call_callback_hooks(trainer, "setup", stage=fn)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 227, in _call_callback_hooks
+    fn(trainer, trainer.lightning_module, *args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 263, in setup
+    raise RuntimeError(
+RuntimeError: SaveConfigCallback expected ./config.yaml to NOT exist. Aborting to avoid overwriting results of a previous run. You can delete the previous config file, set `LightningCLI(save_config_callback=None)` to disable config saving, or set `LightningCLI(save_config_kwargs={"overwrite": True})` to overwrite the config file.
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 615, in <module>
+    LightningCLI(DynamicsModel)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 974, in _run
+    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 108, in _call_setup_hook
+    _call_callback_hooks(trainer, "setup", stage=fn)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 227, in _call_callback_hooks
+    fn(trainer, trainer.lightning_module, *args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 263, in setup
+    raise RuntimeError(
+RuntimeError: SaveConfigCallback expected ./config.yaml to NOT exist. Aborting to avoid overwriting results of a previous run. You can delete the previous config file, set `LightningCLI(save_config_callback=None)` to disable config saving, or set `LightningCLI(save_config_kwargs={"overwrite": True})` to overwrite the config file.

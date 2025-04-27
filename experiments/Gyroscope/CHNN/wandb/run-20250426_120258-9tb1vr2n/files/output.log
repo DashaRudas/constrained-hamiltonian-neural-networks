@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 563, in <module>
+    trainer = Trainer.from_argparse_args(hparams, callbacks=callbacks, logger=logger)
+AttributeError: type object 'Trainer' has no attribute 'from_argparse_args'
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/pl_trainer.py", line 563, in <module>
+    trainer = Trainer.from_argparse_args(hparams, callbacks=callbacks, logger=logger)
+AttributeError: type object 'Trainer' has no attribute 'from_argparse_args'

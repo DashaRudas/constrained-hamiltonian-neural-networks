@@ -1,0 +1,6 @@
+networkx
+olive-oil-ml@ git+https://github.com/mfinzi/olive-oil-ml
+pytorch_lightning
+pywavefront
+torchdiffeq@ git+https://github.com/rtqichen/torchdiffeq
+wandb

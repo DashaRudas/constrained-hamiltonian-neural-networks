@@ -1,0 +1,15 @@
+{"time":"2025-04-26T12:07:15.685334133+03:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/home/rudasha/constrained-hamiltonian-neural-networks/experiments/Gyroscope/CHNN/wandb/run-20250426_120715-oed7dzyr/logs/debug-core.log"}
+{"time":"2025-04-26T12:07:16.591265684+03:00","level":"INFO","msg":"created new stream","id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:16.591296052+03:00","level":"INFO","msg":"stream: started","id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:16.59134537+03:00","level":"INFO","msg":"sender: started","stream_id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:16.591363369+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:16.591572421+03:00","level":"INFO","msg":"handler: started","stream_id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:17.282372069+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-26T12:07:17.495819232+03:00","level":"INFO","msg":"stream: closing","id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:17.495846175+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-26T12:07:17.495909686+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-26T12:07:18.789600346+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-26T12:07:19.350838804+03:00","level":"INFO","msg":"handler: closed","stream_id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:19.350915696+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:19.350946075+03:00","level":"INFO","msg":"sender: closed","stream_id":"oed7dzyr"}
+{"time":"2025-04-26T12:07:19.351053906+03:00","level":"INFO","msg":"stream: closed","id":"oed7dzyr"}

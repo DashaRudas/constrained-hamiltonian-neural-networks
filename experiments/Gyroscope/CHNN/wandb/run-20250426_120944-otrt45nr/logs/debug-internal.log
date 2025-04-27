@@ -1,0 +1,15 @@
+{"time":"2025-04-26T12:09:44.940503693+03:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/home/rudasha/constrained-hamiltonian-neural-networks/experiments/Gyroscope/CHNN/wandb/run-20250426_120944-otrt45nr/logs/debug-core.log"}
+{"time":"2025-04-26T12:09:45.53625111+03:00","level":"INFO","msg":"created new stream","id":"otrt45nr"}
+{"time":"2025-04-26T12:09:45.536309231+03:00","level":"INFO","msg":"stream: started","id":"otrt45nr"}
+{"time":"2025-04-26T12:09:45.536330408+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"otrt45nr"}
+{"time":"2025-04-26T12:09:45.53637207+03:00","level":"INFO","msg":"handler: started","stream_id":"otrt45nr"}
+{"time":"2025-04-26T12:09:45.536402203+03:00","level":"INFO","msg":"sender: started","stream_id":"otrt45nr"}
+{"time":"2025-04-26T12:09:46.138627179+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-26T12:09:46.355171825+03:00","level":"INFO","msg":"stream: closing","id":"otrt45nr"}
+{"time":"2025-04-26T12:09:46.355198782+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-26T12:09:46.355317639+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-26T12:09:47.620274159+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-26T12:09:48.028642814+03:00","level":"INFO","msg":"handler: closed","stream_id":"otrt45nr"}
+{"time":"2025-04-26T12:09:48.028725257+03:00","level":"INFO","msg":"sender: closed","stream_id":"otrt45nr"}
+{"time":"2025-04-26T12:09:48.028706044+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"otrt45nr"}
+{"time":"2025-04-26T12:09:48.028834087+03:00","level":"INFO","msg":"stream: closed","id":"otrt45nr"}

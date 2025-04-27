@@ -1,0 +1,53 @@
+Restoring states from the checkpoint path at lightning_logs/version_0/checkpoints/epoch=49-step=350.ckpt
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/test.py", line 5, in <module>
+    LightningCLI(DynamicsModel, save_config_kwargs={"overwrite": True})
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 775, in test
+    return call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 817, in _test_impl
+    results = self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 981, in _run
+    self._checkpoint_connector._restore_modules_and_callbacks(ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/checkpoint_connector.py", line 409, in _restore_modules_and_callbacks
+    self.restore_model()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/checkpoint_connector.py", line 286, in restore_model
+    self.trainer.strategy.load_model_state_dict(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 372, in load_model_state_dict
+    self.lightning_module.load_state_dict(checkpoint["state_dict"], strict=strict)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2593, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for DynamicsModel:
+	Missing key(s) in state_dict: "model.potential_net.3.weight", "model.potential_net.3.bias".
+	Unexpected key(s) in state_dict: "model.potential_net.5.0.weight", "model.potential_net.5.0.bias", "model.potential_net.6.0.weight", "model.potential_net.6.0.bias", "model.potential_net.7.0.weight", "model.potential_net.7.0.bias", "model.potential_net.8.weight", "model.potential_net.8.bias", "model.potential_net.3.0.weight", "model.potential_net.3.0.bias", "model.potential_net.4.0.weight", "model.potential_net.4.0.bias".
+Traceback (most recent call last):
+  File "/home/rudasha/constrained-hamiltonian-neural-networks/test.py", line 5, in <module>
+    LightningCLI(DynamicsModel, save_config_kwargs={"overwrite": True})
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 775, in test
+    return call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 817, in _test_impl
+    results = self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 981, in _run
+    self._checkpoint_connector._restore_modules_and_callbacks(ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/checkpoint_connector.py", line 409, in _restore_modules_and_callbacks
+    self.restore_model()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/checkpoint_connector.py", line 286, in restore_model
+    self.trainer.strategy.load_model_state_dict(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 372, in load_model_state_dict
+    self.lightning_module.load_state_dict(checkpoint["state_dict"], strict=strict)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2593, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for DynamicsModel:
+	Missing key(s) in state_dict: "model.potential_net.3.weight", "model.potential_net.3.bias".
+	Unexpected key(s) in state_dict: "model.potential_net.5.0.weight", "model.potential_net.5.0.bias", "model.potential_net.6.0.weight", "model.potential_net.6.0.bias", "model.potential_net.7.0.weight", "model.potential_net.7.0.bias", "model.potential_net.8.weight", "model.potential_net.8.bias", "model.potential_net.3.0.weight", "model.potential_net.3.0.bias", "model.potential_net.4.0.weight", "model.potential_net.4.0.bias".
