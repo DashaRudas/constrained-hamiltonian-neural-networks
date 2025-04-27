@@ -12,8 +12,8 @@ by [Marc Finzi](https://mfinzi.github.io/), [Alex Wang](https://keawang.github.i
 <!-- ![chaotic_2pendulum](https://user-images.githubusercontent.com/12687085/94081997-e9bfb700-fdcd-11ea-8ca1-ce7ce1cdc717.PNG) -->
 <!-- ![systems](https://user-images.githubusercontent.com/12687085/94081999-eb897a80-fdcd-11ea-8e29-c676d4e25f64.PNG) -->
 
-# Some example systems
-<img src="assets/5pendulum.gif" width="270"/> <img src="assets/spring2.gif" width="270"/>  <img src="assets/magnet_side.gif" width="270"/> <img src="assets/magnet.gif" width="270"/> <img src="assets/springs5.gif" width="270"/> <img src="assets/racket.gif" width="270"/> 
+# MY example systems
+<img src="gyro.gif" width="600"/> 
 
 Each of these animations were produced by running 
 
