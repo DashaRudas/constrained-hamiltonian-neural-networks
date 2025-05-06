@@ -315,3 +315,146 @@ class CartpoleDataset(Dataset):
         chosen_ts = chunked_ts[chunk_idx, range(batch_size)]
         chosen_zs = chunked_zs[chunk_idx, torch.arange(batch_size).long()]
         return chosen_ts, chosen_zs
+
+
+from torch import Tensor
+from torchdiffeq import odeint                     # pip install torchdiffeq
+
+class MagneticTrap:                                # аналог ChainPendulum, Gyroscope
+    def __init__(self,
+                 q: float = 1.0,                   # заряд
+                 m: float = 1.0,                   # масса
+                 dt: float = 1e-2,
+                 integration_time: float = 10.0):
+        self.D = 3              # q = (x,y,z)
+        self.angular_dims = []  # все координаты линейные
+        self.d = 3 
+        self.q, self.m = q, m
+        self.dt, self.integration_time = dt, integration_time
+        import networkx as nx
+        G = nx.Graph()
+        G.add_node(0, m=self.m)
+        self.body_graph = G
+
+    # ---------- 1.1 поле  ---------------------------------------------------
+    def B(self, x: Tensor) -> Tensor:
+        """
+        МЕСТО ДЛЯ ВАШЕЙ РЕАЛИЗАЦИИ.
+        x : (..., 3)  →  B(x) : (..., 3)
+        Можно вызвать свой solвер dB/ds или просто вернуть константу/градиент.
+        """
+        # пример квадратичной ловушки (магнитное бутылочное поле)
+        # Bz = B0 + (G/2)*(x^2 + y^2 - 2 z^2);  Bx=By=0
+        B0, G = 1.0, 0.1
+        x2y2 = (x[...,0]**2 + x[...,1]**2)
+        Bz   = B0 + 0.5*G*(x2y2 - 2*x[...,2]**2)
+        return torch.stack([torch.zeros_like(Bz), torch.zeros_like(Bz), Bz], dim=-1)
+
+    # ---------- 1.2 прав.-часть d/dt (x,v) ----------------------------------
+    def f(self, t: Tensor, z: Tensor) -> Tensor:
+        """
+        z = (x, v)  сshape (..., 6)
+        Возвращает d/dt (x,v) = (v,  (q/m)*v×B(x) )
+        """
+        x, v = z[..., :3], z[..., 3:]
+        B = self.B(x)
+        a = (self.q/self.m) * torch.cross(v, B, dim=-1)   # Лоренц a = (q/m) v×B
+        return torch.cat([v, a], dim=-1)
+
+    # ---------- 1.3 интегратор ---------------------------------------------
+    def integrate(self, z0, ts,
+                  tol=None,        # ← добавляем
+                  rtol=1e-7, atol=1e-7,
+                  method="dopri5"):
+
+        # если пришёл старый аргумент tol – переиспользуем
+        if tol is not None:
+            rtol = atol = tol
+        return odeint(self.f, z0, ts, rtol=rtol, atol=atol, method=method)
+
+    # ---------- 1.4 генерация начальных условий ----------------------------
+    def sample_initial_conditions(self, N: int) -> Tensor:
+        """
+        Равномерно в шаре r<1 и Maxwellian скорости; поправьте по желанию.
+        Возвращает (N,6)  [x0_y0_z0_vx_vy_vz]
+        """
+        # позиции
+        xyz = torch.randn(N,3)
+        xyz = xyz / xyz.norm(dim=-1,keepdim=True) * torch.rand(N,1)**(1/3)
+        # скорости
+        v = torch.randn(N,3)
+        return torch.cat([xyz, v], dim=-1)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2.  DATASET  ────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+from torch.utils.data import Dataset
+import os
+
+class MagneticTrapDataset(Dataset):
+    """Dataset для частицы в магнитной ловушке — формат (N,T,2,3)."""
+
+    def __init__(self,
+                 root_dir="~/datasets/ODEDynamics/MagneticTrapDataset/",
+                 n_systems=1000,
+                 n_subsample=None,
+                 trap=None, body=None,
+                 chunk_len: int = 50,
+                 regen: bool = False,
+                 seed: int = 0,
+                 mode: str = "train",
+                 **_):
+        
+        super().__init__()
+        self.trap = trap or body or MagneticTrap()
+        torch.manual_seed(seed)
+        self.body = self.trap 
+        root_dir = os.path.expanduser(root_dir)
+        os.makedirs(root_dir, exist_ok=True)
+        fname = os.path.join(root_dir, f"traj_{mode}_N{n_systems}.pt")
+
+        # --- читаем или генерируем -------------------------------------------------
+        if regen or not os.path.exists(fname):
+            ts, zs = self._gen_trajs(n_systems)
+            torch.save((ts, zs), fname)
+        else:
+            ts, zs = torch.load(fname)
+
+            # авто-конвертация старого формата (N,T,6) → (N,T,2,3)
+            if zs.ndim == 3 and zs.shape[-1] == 6:
+                x, v = zs[..., :3], zs[..., 3:]
+                zs   = torch.stack([x, v], dim=2)        # (N,T,2,3)
+                torch.save((ts, zs), fname)
+
+        assert zs.ndim == 4 and zs.shape[-2:] == (2, 3), \
+            f"Dataset wrong shape {zs.shape}, должны быть (N,T,2,3)"
+
+        # --- нарезаем куски --------------------------------------------------------
+        self.Ts, self.Zs = self._chunk(ts, zs, chunk_len)
+        if n_subsample is not None:
+            self.Ts, self.Zs = self.Ts[:n_subsample], self.Zs[:n_subsample]
+
+    # -------------------------------------------------------------------------
+    def _gen_trajs(self, N: int):
+        z0 = self.trap.sample_initial_conditions(N)          # (N,6)
+        ts = torch.arange(0., self.trap.integration_time, self.trap.dt)
+        zs = self.trap.integrate(z0, ts).transpose(0, 1)     # (N,T,6)
+
+        x, v = zs[..., :3], zs[..., 3:]
+        zs   = torch.stack([x, v], dim=2)                    # (N,T,2,3)
+
+        ts = ts.unsqueeze(0).repeat(N, 1)
+        return ts, zs
+
+    def _chunk(self, ts, zs, L):
+        N, T = ts.shape
+        n_chunks = T // L
+        idx = torch.randint(0, n_chunks, (N,))
+        return (ts.view(N, n_chunks, L)[torch.arange(N), idx].float(),
+                zs.view(N, n_chunks, L, 2, 3)[torch.arange(N), idx].float())
+
+    # dataset API -------------------------------------------------------------
+    def __len__(self):      return len(self.Zs)
+    def __getitem__(self,i): return (self.Zs[i, 0], self.Ts[i]), self.Zs[i]
+

@@ -1,0 +1,52 @@
+{
+  "os": "Linux-6.8.0-59-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2025-05-06T20:40:26.864961Z",
+  "args": [
+    "fit",
+    "--model.body_class=MagneticTrap",
+    "--model.network_class=LNN",
+    "--model.dataset_class=MagneticTrapDataset",
+    "--model.n_train_systems=100",
+    "--model.n_train=80",
+    "--model.n_val=10",
+    "--model.n_test=10",
+    "--model.chunk_len=5",
+    "--model.batch_size=128",
+    "--trainer.accelerator=cpu",
+    "--trainer.devices=1",
+    "--trainer.max_epochs=50",
+    "--trainer.check_val_every_n_epoch=5",
+    "--trainer.logger.class_path=lightning.pytorch.loggers.WandbLogger",
+    "--trainer.logger.init_args.project=magn-demo",
+    "--trainer.logger.init_args.tags=[\\\"train\\\",\\\"viz\\\"]",
+    "--trainer.callbacks+=callbacks.SaveTestLogCallback",
+    "--trainer.callbacks+=callbacks.VisualizeTrajectoriesCallback"
+  ],
+  "program": "/home/rudasha/proj/constrained-hamiltonian-neural-networks/train.py",
+  "codePath": "train.py",
+  "git": {
+    "remote": "https://github.com/DashaRudas/constrained-hamiltonian-neural-networks.git",
+    "commit": "851e945fcf1fbdd13c99ff62e03c92c2e6bb516a"
+  },
+  "email": "dashka.rudas@gmail.com",
+  "root": ".",
+  "host": "rudasha",
+  "executable": "/usr/bin/python3",
+  "codePathLocal": "train.py",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "250375106560",
+      "used": "222262050816"
+    }
+  },
+  "memory": {
+    "total": "7199014912"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 8
+  }
+}

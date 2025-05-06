@@ -1,0 +1,86 @@
+
+  | Name  | Type | Params | Mode
+---------------------------------------
+0 | model | LNN  | 133 K  | train
+---------------------------------------
+133 K     Trainable params
+0         Non-trainable params
+133 K     Total params
+0.535     Total estimated model params size (MB)
+15        Modules in train mode
+0         Modules in eval mode
+Sanity Checking DataLoader 0:   0%|                                                                                                           | 0/1 [00:00<?, ?it/s]Rolling out model
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:425: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+Rolling out true system
+Traceback (most recent call last):
+  File "/home/rudasha/proj/constrained-hamiltonian-neural-networks/train.py", line 5, in <module>
+    LightningCLI(DynamicsModel, save_config_kwargs={"overwrite": True})
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/rudasha/proj/constrained-hamiltonian-neural-networks/pl_trainer.py", line 242, in validation_step
+    out = self.test_step(
+  File "/home/rudasha/proj/constrained-hamiltonian-neural-networks/pl_trainer.py", line 265, in test_step
+    ) = self.compare_rollouts(
+  File "/home/rudasha/proj/constrained-hamiltonian-neural-networks/pl_trainer.py", line 398, in compare_rollouts
+    sq_diff_pred_true = (pred_zts - true_zts).pow(2).sum((2, 3, 4))
+IndexError: Dimension out of range (expected to be in range of [-4, 3], but got 4)
+Traceback (most recent call last):
+  File "/home/rudasha/proj/constrained-hamiltonian-neural-networks/train.py", line 5, in <module>
+    LightningCLI(DynamicsModel, save_config_kwargs={"overwrite": True})
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/rudasha/proj/constrained-hamiltonian-neural-networks/pl_trainer.py", line 242, in validation_step
+    out = self.test_step(
+  File "/home/rudasha/proj/constrained-hamiltonian-neural-networks/pl_trainer.py", line 265, in test_step
+    ) = self.compare_rollouts(
+  File "/home/rudasha/proj/constrained-hamiltonian-neural-networks/pl_trainer.py", line 398, in compare_rollouts
+    sq_diff_pred_true = (pred_zts - true_zts).pow(2).sum((2, 3, 4))
+IndexError: Dimension out of range (expected to be in range of [-4, 3], but got 4)

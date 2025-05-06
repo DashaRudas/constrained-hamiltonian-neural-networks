@@ -49,7 +49,9 @@ class LagrangianDynamics(nn.Module):
                 [grad((dL_dv * eye[i]).sum(), v, create_graph=self.wgrad)[0]
                     for i in range(d)],dim=-1,)
             F = (dL_dq + Fv).unsqueeze(-1)
-            a = torch.solve(F, M)[0].squeeze(-1)
+            # torch.linalg.solve(A, B) решает  A · X = B
+            # порядок аргументов обратный старому torch.solve(B, A)
+            a = torch.linalg.solve(M, F).squeeze(-1)
             dynamics = torch.cat([v, a], dim=-1)  # +Fv#
         return dynamics
 

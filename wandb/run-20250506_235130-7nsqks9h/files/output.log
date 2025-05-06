@@ -1,0 +1,17 @@
+
+  | Name  | Type | Params | Mode
+---------------------------------------
+0 | model | LNN  | 133 K  | train
+---------------------------------------
+133 K     Trainable params
+0         Non-trainable params
+133 K     Total params
+0.535     Total estimated model params size (MB)
+15        Modules in train mode
+0         Modules in eval mode
+Epoch 49: 100%|█████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  1.06it/s, v_num=ks9h, validation/trajectory_mae=0.0206]
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:425: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:425: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+/home/rudasha/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py:310: The number of training batches (1) is smaller than the logging interval Trainer(log_every_n_steps=50). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+                                                                                                                                                                    
+`Trainer.fit` stopped: `max_epochs=50` reached.

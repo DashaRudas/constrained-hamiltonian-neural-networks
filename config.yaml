@@ -1,9 +1,9 @@
 # lightning.pytorch==2.5.1.post0
 seed_everything: 0
 trainer:
-  accelerator: auto
+  accelerator: cpu
   strategy: auto
-  devices: auto
+  devices: '1'
   num_nodes: 1
   precision: null
   logger:
@@ -16,14 +16,16 @@ trainer:
       dir: null
       id: null
       anonymous: null
-      project: gyro-demo
+      project: magn-demo
       log_model: false
       experiment: null
       prefix: ''
       checkpoint_name: null
       entity: null
       notes: null
-      tags: null
+      tags:
+      - \"train\"
+      - \"viz\"
       config: null
       config_exclude_keys: null
       config_include_keys: null
@@ -41,10 +43,9 @@ trainer:
       sync_tensorboard: null
       monitor_gym: null
       settings: null
-  callbacks:
-  - class_path: callbacks.SaveTestLogCallback
+  callbacks: null
   fast_dev_run: false
-  max_epochs: null
+  max_epochs: 50
   min_epochs: null
   max_steps: -1
   min_steps: null
@@ -55,7 +56,7 @@ trainer:
   limit_predict_batches: null
   overfit_batches: 0.0
   val_check_interval: null
-  check_val_every_n_epoch: 1
+  check_val_every_n_epoch: 5
   num_sanity_val_steps: null
   log_every_n_steps: null
   enable_checkpointing: null
@@ -66,7 +67,7 @@ trainer:
   gradient_clip_algorithm: null
   deterministic: null
   benchmark: null
-  inference_mode: false
+  inference_mode: true
   use_distributed_sampler: true
   profiler: null
   detect_anomaly: false
@@ -77,20 +78,20 @@ trainer:
   default_root_dir: null
   model_registry: null
 model:
-  body_class: Gyroscope
-  network_class: CHNN
+  body_class: MagneticTrap
+  network_class: LNN
   batch_size: 128
-  dataset_class: RigidBodyDataset
-  n_train_systems: 1000
-  n_train: 800
-  n_val: 100
-  n_test: 100
+  dataset_class: MagneticTrapDataset
+  n_train_systems: 100
+  n_train: 80
+  n_val: 10
+  n_test: 10
   chunk_len: 5
   regen: false
   seed: 0
   body_args: null
   n_hidden: 256
-  n_layers: 8
+  n_layers: 3
   lr: 0.003
   weight_decay: 0.0001
   optimizer_class: AdamW
@@ -99,5 +100,4 @@ model:
 data: null
 optimizer: null
 lr_scheduler: null
-ckpt_path: lightning_logs/version_0/checkpoints/epoch=49-step=350.ckpt
-verbose: true
+ckpt_path: null

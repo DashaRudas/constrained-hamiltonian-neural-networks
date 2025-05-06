@@ -1,0 +1,15 @@
+{"time":"2025-05-06T23:48:01.32383157+03:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"wandb/run-20250506_234801-msnf4wen/logs/debug-core.log"}
+{"time":"2025-05-06T23:48:01.924566216+03:00","level":"INFO","msg":"created new stream","id":"msnf4wen"}
+{"time":"2025-05-06T23:48:01.924660726+03:00","level":"INFO","msg":"stream: started","id":"msnf4wen"}
+{"time":"2025-05-06T23:48:01.924673761+03:00","level":"INFO","msg":"sender: started","stream_id":"msnf4wen"}
+{"time":"2025-05-06T23:48:01.924724989+03:00","level":"INFO","msg":"handler: started","stream_id":"msnf4wen"}
+{"time":"2025-05-06T23:48:01.92466767+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"msnf4wen"}
+{"time":"2025-05-06T23:48:02.277190842+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-06T23:48:05.079141365+03:00","level":"INFO","msg":"stream: closing","id":"msnf4wen"}
+{"time":"2025-05-06T23:48:05.079960134+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-06T23:48:05.080349266+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-06T23:48:06.33842917+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-06T23:48:06.747890446+03:00","level":"INFO","msg":"handler: closed","stream_id":"msnf4wen"}
+{"time":"2025-05-06T23:48:06.747996097+03:00","level":"INFO","msg":"sender: closed","stream_id":"msnf4wen"}
+{"time":"2025-05-06T23:48:06.747989063+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"msnf4wen"}
+{"time":"2025-05-06T23:48:06.748306708+03:00","level":"INFO","msg":"stream: closed","id":"msnf4wen"}

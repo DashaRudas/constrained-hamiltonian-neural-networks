@@ -28,6 +28,7 @@ from biases.models.hnn import HNN
 from biases.models.lnn import LNN, DeLaN
 from biases.models.nn import NN, DeltaNN
 from biases.datasets import RigidBodyDataset
+from biases.datasets import MagneticTrap, MagneticTrapDataset
 from biases.systems.rigid_body import rigid_Phi, project_onto_constraints
 from typing import List, Optional
 
@@ -41,6 +42,23 @@ class TrajectoryPlotCallback(pl.Callback):
         self.n_samples = n_samples
         self.dpi = dpi
 
+    def _select_x(self, zts):
+        """
+        Возвращает компоненту «x-координата первого тела»
+        для любых допустимых форм выходного тензора:
+        (B,T,6)          → x = zts[..., 0]
+        (B,T,2,3)        → x = zts[..., 0, 0]
+        (B,T,2,n,3)      → x = zts[..., 0, 0, 0]
+        """
+        if zts.ndim == 3:                # (B,T,6)
+            return zts[..., 0]
+        elif zts.ndim == 4:              # (B,T,2,3)
+            return zts[..., 0, 0]
+        elif zts.ndim == 5:              # (B,T,2,n,3)
+            return zts[..., 0, 0, 0]
+        else:
+            raise ValueError(f"Unexpected shape {zts.shape}")
+        
     def on_validation_epoch_end(self, trainer, pl_module: "DynamicsModel"):
         epoch = trainer.current_epoch
         if epoch % self.every_n_epochs or trainer.sanity_checking:
@@ -53,27 +71,28 @@ class TrajectoryPlotCallback(pl.Callback):
 
         fig_traj, ax = plt.subplots(figsize=(5, 3), dpi=self.dpi)
         for k in range(self.n_samples):
-            ax.plot(true[k, :, 0, 0, 0].cpu(), label=f"true #{k}")
-            ax.plot(pred[k, :, 0, 0, 0].cpu(), "--")
+            ax.plot(self._select_x(true)[k].cpu(), label=f"true #{k}")
+            ax.plot(self._select_x(pred)[k].cpu(), "--")
         ax.set_title("Validation trajectories"); ax.set_xlabel("t")
         ax.legend(ncol=2, fontsize=6)
 
         # --- 2. энергия
-        E_true = pl_module.true_energy(true)
-        E_pred = pl_module.true_energy(pred)
-        fig_E, axE = plt.subplots(figsize=(5, 2), dpi=self.dpi)
-        axE.plot((E_pred-E_true).abs().mean(0).cpu())
-        axE.set_title("|ΔE|"); axE.set_xlabel("t")
-        # логируем в W&B
-        pl_module.logger.experiment.log(
-            {
-                "val/traj":      fig_to_img(fig_traj),
-                "val/E_abs_err": fig_to_img(fig_E),
-            },
-            step=epoch,
-        )
-        plt.close(fig_traj)
-        plt.close(fig_E)
+        if hasattr(pl_module.body, "M"):          # у MagneticTrap энергии нет
+            E_true = pl_module.true_energy(true)
+            E_pred = pl_module.true_energy(pred)
+            fig_E, axE = plt.subplots(figsize=(5, 2), dpi=self.dpi)
+            axE.plot((E_pred-E_true).abs().mean(0).cpu())
+            axE.set_title("|ΔE|"); axE.set_xlabel("t")
+            # логируем в W&B
+            pl_module.logger.experiment.log(
+                {
+                    "val/traj":      fig_to_img(fig_traj),
+                    "val/E_abs_err": fig_to_img(fig_E),
+                },
+                step=epoch,
+            )
+            plt.close(fig_traj)
+            plt.close(fig_E)
 
 
 
@@ -137,7 +156,8 @@ class DynamicsModel(pl.LightningModule):
         self._test_outs: list = []
         self.save_hyperparameters()
         self.body = str_to_class(body_class)(*(body_args or []))
-        euclidean = network_class not in {"NN", "LNN", "HNN", "DeLaN"}
+        # euclidean = network_class not in {"NN", "LNN", "HNN", "DeLaN"}
+        euclidean = network_class in {"NN", "LNN"}
         self.hparams.euclidean = euclidean 
         self.euclidean = euclidean
 
@@ -157,13 +177,22 @@ class DynamicsModel(pl.LightningModule):
                              seed=seed+2, mode="test"),
         }
         # 3) Сеть
-        net_cfg = dict(
-            dof_ndim=self.body.d if euclidean else self.body.D,
-            angular_dims=self.body.angular_dims,
-            hidden_size=n_hidden, num_layers=n_layers, wgrad=True
-        )
+        # net_cfg = dict(
+        #     dof_ndim=self.body.d if euclidean else self.body.D,
+        #     angular_dims=self.body.angular_dims,
+        #     hidden_size=n_hidden, num_layers=n_layers, wgrad=True
+        # )
+        net_cfg = dict(dof_ndim=self.body.d if euclidean else self.body.D,
+               hidden_size=n_hidden, num_layers=n_layers, wgrad=True)
+        # углы важны только для не-евклидовых моделей
+        if not euclidean:
+            net_cfg["angular_dims"] = self.body.angular_dims
+
+        # если у тела нет body_graph, не передаём G
+        G_kw = {"G": self.body.body_graph} if hasattr(self.body, "body_graph") else {}
+
         Net = str_to_class(network_class)
-        self.model = Net(G=self.body.body_graph, **net_cfg)
+        self.model = Net(**G_kw, **net_cfg)
 
     def forward(self, z0, ts, tol=None, method="rk4"):
         return self.rollout(z0, ts, tol or self.hparams.tol, method)
@@ -336,64 +365,62 @@ class DynamicsModel(pl.LightningModule):
         self.test_log = save
         self._test_outs.clear()   
     
-    def compare_rollouts(
-        self, z0: Tensor, integration_time: float, dt: float, tol: float, pert_eps=1e-4
-    ):
-        prev_device = list(self.parameters())[0].device
-        prev_dtype = list(self.parameters())[0].dtype
-        ts = torch.arange(0.0, integration_time, dt, device=z0.device, dtype=z0.dtype)
-        print("Rolling out model")
-        pred_zts = self.rollout(z0, ts, tol, "dopri5")
-        bs, Nlong, *rest = pred_zts.shape
-        body = self.datasets["test"].body
-        if not self.hparams.euclidean:
-            z0 = body.body2globalCoords(z0)
-            flat_pred = body.body2globalCoords(pred_zts.reshape(bs * Nlong, *rest))
+    def compare_rollouts(self, z0: Tensor, integration_time: float, dt: float,
+                         tol: float, pert_eps: float = 1e-4):
+        """Сверяем предсказание модели с «истинной» динамикой"""
+        prev_device = z0.device
+        ts = torch.arange(0.0, integration_time, dt, device=prev_device,
+                         dtype=z0.dtype)
 
-            pred_zts = flat_pred.reshape(bs, Nlong, *flat_pred.shape[1:])
+        # ----- 1. rollout модели -------------------------------------
+        pred_zts = self.rollout(z0, ts, tol, "dopri5")         # (B,T,6)
+        B, T, *_ = pred_zts.shape
+        pred_zts = pred_zts.view(B, T, 2, 3)                    # (B,T,2,3)
 
-        perturbation = pert_eps * torch.randn_like(
-            z0
-        )
-        z0_perturbed = project_onto_constraints(
-            body.body_graph, z0 + perturbation
-        )
-        # (bs, n_steps, 2, n_dof, d)
-        print("Rolling out true system")
-        z0_ = torch.cat([z0, z0_perturbed], dim=0)
-        true_zts_pert_zts = body.integrate(z0_, ts, tol=tol)
-        true_zts, pert_zts = true_zts_pert_zts.chunk(2, dim=0)
+        # ----- 2. rollout «истинной» системы -------------------------
+        body = self.datasets["test"].body or getattr(self.datasets["test"], "trap", None)
+        perturb = pert_eps * torch.randn_like(z0)
+        z0p = z0 + perturb
+        if z0p.ndim == 4 and hasattr(body, "body_graph"):
+            z0p = project_onto_constraints(body.body_graph, z0p)
 
-        sq_diff_pred_true = (pred_zts - true_zts).pow(2).sum((2, 3, 4))
-        sq_diff_pert_true = (true_zts - pert_zts).pow(2).sum((2, 3, 4))
-        sq_sum_pred_true = (pred_zts + true_zts).pow(2).sum((2, 3, 4))
-        sq_sum_pert_true = (true_zts + pert_zts).pow(2).sum((2, 3, 4))
+        z0_ = torch.cat([z0, z0p], dim=0)       # (2*B, 2, 3)
+        z0_flat = z0_.reshape(z0_.shape[0], -1)          # (2*B, 6)
+        true_zts_pert_zts = body.integrate(z0_flat, ts)  # (T, 2*B, 6)
+        true_zts_pert_zts = true_zts_pert_zts.permute(1, 0, 2)  # (2*B, T, 6)
 
-        # (bs, n_step)
-        rel_err_pred_true = sq_diff_pred_true.div(sq_sum_pred_true).sqrt()
+        # дальше без изменений
+        bs, Nlong = z0.shape[0], ts.numel()
+        true_zts, pert_zts = true_zts_pert_zts.split(bs, dim=0)  # (B,T,6) каждая
+        true_zts = true_zts.view(bs, Nlong, 2, 3)                # (B,T,2,3)
+        pert_zts = pert_zts.view(bs, Nlong, 2, 3)
+
+        # ----- 3. ошибки --------------------------------------------
+        sq_diff_pred_true = (pred_zts - true_zts).pow(2).sum((2,3))
+        sq_sum_pred_true  = (pred_zts + true_zts).pow(2).sum((2,3))
+
+        sq_diff_pert_true = (pert_zts - true_zts).pow(2).sum((2,3))
+        sq_sum_pert_true  = (pert_zts + true_zts).pow(2).sum((2,3))
+
+        rel_err_pred_true = (sq_diff_pred_true / sq_sum_pred_true).sqrt()
         abs_err_pred_true = sq_diff_pred_true.sqrt()
-        rel_err_pert_true = sq_diff_pert_true.div(sq_sum_pert_true).sqrt()
+        rel_err_pert_true = (sq_diff_pert_true / sq_sum_pert_true).sqrt()
         abs_err_pert_true = sq_diff_pert_true.sqrt()
 
-        self.to(prev_dtype)
-        self.to(prev_device)
-        return (
-            pred_zts,
-            true_zts,
-            pert_zts,
-            rel_err_pred_true,
-            abs_err_pred_true,
-            rel_err_pert_true,
-            abs_err_pert_true,
-        )
+        return (pred_zts, true_zts, pert_zts,
+                rel_err_pred_true, abs_err_pred_true,
+                rel_err_pert_true, abs_err_pert_true)
 
-    def true_energy(self, zs):
+    def true_energy(self, zs: Tensor):
+        if not all(hasattr(self.body, attr) for attr in ("M", "hamiltonian")):
+            return torch.zeros(zs.shape[:2], device=zs.device, dtype=zs.dtype)
         N, T = zs.shape[:2]
         q, qdot = zs.chunk(2, dim=2)
         p = self.body.M @ qdot
-        zs = torch.cat([q, p], dim=2)
-        energy = self.body.hamiltonian(None, zs.reshape(N * T, -1))
-        return energy.reshape(N, T)
+        zs_flat = torch.cat([q, p], dim=2).view(N*T, -1)
+        energy = self.body.hamiltonian(None, zs_flat).view(N, T)
+        return energy
+
 
     def integrate_curve(self, y, t=None, dt=1.0, axis=-1):
         if torch.is_tensor(y):

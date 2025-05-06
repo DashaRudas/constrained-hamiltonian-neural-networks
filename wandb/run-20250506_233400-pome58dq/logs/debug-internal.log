@@ -1,0 +1,15 @@
+{"time":"2025-05-06T23:34:00.483530797+03:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"wandb/run-20250506_233400-pome58dq/logs/debug-core.log"}
+{"time":"2025-05-06T23:34:00.93094701+03:00","level":"INFO","msg":"created new stream","id":"pome58dq"}
+{"time":"2025-05-06T23:34:00.93101582+03:00","level":"INFO","msg":"stream: started","id":"pome58dq"}
+{"time":"2025-05-06T23:34:00.931067296+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"pome58dq"}
+{"time":"2025-05-06T23:34:00.931164469+03:00","level":"INFO","msg":"handler: started","stream_id":"pome58dq"}
+{"time":"2025-05-06T23:34:00.931171021+03:00","level":"INFO","msg":"sender: started","stream_id":"pome58dq"}
+{"time":"2025-05-06T23:34:01.246106753+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-06T23:34:02.900821456+03:00","level":"INFO","msg":"stream: closing","id":"pome58dq"}
+{"time":"2025-05-06T23:34:02.9008984+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-06T23:34:02.900998609+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-06T23:34:04.042912436+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-06T23:34:04.365438747+03:00","level":"INFO","msg":"handler: closed","stream_id":"pome58dq"}
+{"time":"2025-05-06T23:34:04.365538955+03:00","level":"INFO","msg":"sender: closed","stream_id":"pome58dq"}
+{"time":"2025-05-06T23:34:04.365519739+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"pome58dq"}
+{"time":"2025-05-06T23:34:04.365691031+03:00","level":"INFO","msg":"stream: closed","id":"pome58dq"}
